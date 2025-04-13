@@ -1,0 +1,15 @@
+function doGet(e) {
+    var kucingValue = parseInt(e.parameter.kucing); // Mendapatkan nilai kucing dari parameter
+    incrementKucing(kucingValue);
+}
+
+function incrementKucing(kucingValue) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var lastRow = sheet.getLastRow();
+  var date = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "MM/dd/yyyy");
+  var time = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "HH:mm:ss");
+
+  sheet.getRange('A' + (lastRow + 1)).setValue(date);
+  sheet.getRange('B' + (lastRow + 1)).setValue(time);
+  sheet.getRange('C' + (lastRow + 1)).setValue(kucingValue);
+}
